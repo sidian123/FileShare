@@ -1,13 +1,13 @@
 import axios from "axios";
 
-function init(vueInstance){
-  axios.interceptors.response.use(function (response) {
+function init(){
+  axios.interceptors.response.use( (response)=> {
     let apiResponse=response.data;
     if(apiResponse.code==="ok") {
       return response.data.data;
     }else if(apiResponse.code==="info"){
-      vueInstance.$message.info(apiResponse.message);
-      return response.data.data;
+      this.$message.info(apiResponse.message);
+      throw new Error(apiResponse.message);
     }else if(apiResponse.code==="fail"){
       throw new Error(apiResponse.message);
     }

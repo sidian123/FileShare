@@ -10,6 +10,10 @@ Vue.use(ElementUI);
 
 let vue = new Vue({
   render: h => h(App),
-}).$mount('#app');
-
-axiosInit(vue);
+  created(){
+    this.axiosInit();
+  },
+  methods:{
+    axiosInit
+  }
+}).$mount('#app')
