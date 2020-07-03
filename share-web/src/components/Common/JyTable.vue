@@ -6,7 +6,7 @@
       </slot>
     </div>
     <div class="table-wrap">
-      <el-table :data="tableInfo.data" border stripe tooltipEffect="light" height="100%">
+      <el-table :data="tableInfo.data" border stripe tooltipEffect="light">
         <!--  要张开的列  -->
         <el-table-column type="expand" v-if="isExpand">
           <template slot-scope="{row}">

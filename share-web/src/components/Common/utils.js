@@ -25,6 +25,18 @@ export default {
       }
     }
     return formData
+  },
+  /**
+   * 假分页
+   * @param list 数组集合
+   * @param pageInfo 分页信息
+   */
+  fakePaging(list,pageInfo){
+    pageInfo.total=list.length;
+    return list.slice(
+        (pageInfo.pageNum-1) * pageInfo.pageSize,
+        pageInfo.pageNum * pageInfo.pageSize
+    )
   }
 }
 

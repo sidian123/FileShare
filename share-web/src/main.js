@@ -6,10 +6,10 @@ import axiosInit from './config/AxiosConfig'
 
 Vue.config.productionTip = false
 
-axiosInit();
-
-
 Vue.use(ElementUI);
-new Vue({
+
+let vue = new Vue({
   render: h => h(App),
-}).$mount('#app')
+}).$mount('#app');
+
+axiosInit(vue);

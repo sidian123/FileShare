@@ -24,25 +24,25 @@ public interface FileApi {
 
     /**
      * 新增目录
-     * @param name 目录名
+     * @param path 目录名
      * @return 结果
      */
     @GetMapping("/make/dir")
-    ApiResponse<Void> mkdir(String name);
+    ApiResponse<Void> mkdir(String path);
 
     /**
      * 新增问价
-     * @param name 文件名
+     * @param path 文件名
      * @return 结果
      */
     @GetMapping("/touch/file")
-    ApiResponse<Void> touch(String name);
+    ApiResponse<Void> touch(String path);
 
     /**
      * 删除文件或目录(递归)
-     * @param name 文件或目录名
+     * @param path 文件或目录的全路径名
      * @return 结果
      */
     @GetMapping("/rm")
-    ApiResponse<Void> rm(String name);
+    ApiResponse<Void> rm(String path);
 }

@@ -33,10 +33,17 @@ public class FileApiImpl implements FileApi {
     public ApiResponse<List<File>> list(@RequestParam(required = false,defaultValue = "") String path) {
         try {
             return ApiResponse.success(Files.list(FileUtils.getPath(path)).map(path1 ->{
+                File.FileBuilder builder = File.builder()
+                        .name(path1.getFileName().toString())
+                        .type("directory")
+                        .path(FileUtils.getRoot().relativize(path1).toString())
+                        .modifiedTime(FileUtils.getModifiedTime(path1))
+                        .createdTime(FileUtils.getCreateTime(path1));
+
                 if(Files.isDirectory(path1)){
-                    return new File(path1.toString(),"directory");
+                    return builder.type("directory").build();
                 }else{
-                    return new File(path1.toString(),"file");
+                    return builder.type("file").build();
                 }
             }).collect(Collectors.toList()));
         } catch (IOException e) {
@@ -46,15 +53,15 @@ public class FileApiImpl implements FileApi {
     }
 
     @Override
-    public ApiResponse<Void> mkdir(String name) {
+    public ApiResponse<Void> mkdir(String path) {
         // 参数校验
-        if(StrUtil.isBlank(name)){
+        if(StrUtil.isBlank(path)){
             return ApiResponse.fail("参数不能为空");
         }
         // TODO 格式校验
         // 创建目录
         try {
-            Files.createDirectory(FileUtils.getPath(name));
+            Files.createDirectory(FileUtils.getPath(path));
             return ApiResponse.success();
         }catch (FileAlreadyExistsException e){
             return ApiResponse.info("目录已存在");
@@ -65,15 +72,15 @@ public class FileApiImpl implements FileApi {
     }
 
     @Override
-    public ApiResponse<Void> touch(String name) {
+    public ApiResponse<Void> touch(String path) {
         // 参数校验
-        if(StrUtil.isBlank(name)){
+        if(StrUtil.isBlank(path)){
             return ApiResponse.fail("参数不能为空");
         }
         // TODO 格式校验
         // 创建文件
         try {
-            Files.createFile(FileUtils.getPath(name));
+            Files.createFile(FileUtils.getPath(path));
             return ApiResponse.success();
         }catch(FileAlreadyExistsException e) {
             return ApiResponse.info("文件已存在");
@@ -86,14 +93,14 @@ public class FileApiImpl implements FileApi {
     }
 
     @Override
-    public ApiResponse<Void> rm(String name) {
+    public ApiResponse<Void> rm(String path) {
         // 参数校验
-        if(StrUtil.isBlank(name)){
+        if(StrUtil.isBlank(path)){
             return ApiResponse.fail("参数不能为空");
         }
         // TODO 格式校验
         try{
-            FileUtil.del(FileUtils.getPath(name));
+            FileUtil.del(FileUtils.getPath(path));
             return ApiResponse.success();
         }catch (Exception e){
             return ApiResponse.fail(e);

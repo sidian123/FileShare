@@ -10,6 +10,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.NotDirectoryException;
 import java.nio.file.Path;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.nio.file.attribute.FileTime;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 
 /**
  * @author sidian
@@ -22,6 +27,10 @@ public class FileUtils implements ApplicationContextAware {
     public static Path getPath(String path){
         assert path!=null;
         return Path.of(config.getLocation(),path);
+    }
+
+    public static Path getRoot(){
+        return Path.of(config.getLocation());
     }
 
     /**
@@ -37,6 +46,34 @@ public class FileUtils implements ApplicationContextAware {
         //检查参数, 必须是目录
         if(!Files.isDirectory(path)){//不是目录
             throw new NotDirectoryException("必须是目录");
+        }
+    }
+
+    /**
+     * 得到文件创建时间
+     * @param path 文件路径
+     * @return 创建时间,无毫秒
+     */
+    public static Date getCreateTime(Path path) {
+        try {
+            return new Date(Files.readAttributes(path, BasicFileAttributes.class).creationTime().toMillis());
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new Date();
+        }
+    }
+
+    /**
+     * 得到文件最近修改时间
+     * @param path 文件路径
+     * @return 最近修改时间,无毫秒
+     */
+    public static Date getModifiedTime(Path path) {
+        try {
+            return new Date(Files.readAttributes(path, BasicFileAttributes.class).lastModifiedTime().toMillis());
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new Date();
         }
     }
 
