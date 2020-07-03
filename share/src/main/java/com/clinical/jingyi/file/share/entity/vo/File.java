@@ -30,13 +30,18 @@ public class File {
     String path;
 
     /**
-     * 文件修改事件
+     * 文件修改日期
      */
     Date modifiedTime;
 
     /**
-     * 文件创建时间
+     * 文件创建日期
      */
     Date createdTime;
+
+    /**
+     * 大小, 单位子节
+     */
+    long size;
 }
 

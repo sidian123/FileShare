@@ -49,32 +49,8 @@ public class FileUtils implements ApplicationContextAware {
         }
     }
 
-    /**
-     * 得到文件创建时间
-     * @param path 文件路径
-     * @return 创建时间,无毫秒
-     */
-    public static Date getCreateTime(Path path) {
-        try {
-            return new Date(Files.readAttributes(path, BasicFileAttributes.class).creationTime().toMillis());
-        } catch (IOException e) {
-            e.printStackTrace();
-            return new Date();
-        }
-    }
-
-    /**
-     * 得到文件最近修改时间
-     * @param path 文件路径
-     * @return 最近修改时间,无毫秒
-     */
-    public static Date getModifiedTime(Path path) {
-        try {
-            return new Date(Files.readAttributes(path, BasicFileAttributes.class).lastModifiedTime().toMillis());
-        } catch (IOException e) {
-            e.printStackTrace();
-            return new Date();
-        }
+    public static BasicFileAttributes getAttrs(Path path) throws IOException {
+        return Files.readAttributes(path,BasicFileAttributes.class);
     }
 
     @Override

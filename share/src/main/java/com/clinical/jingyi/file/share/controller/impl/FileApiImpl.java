@@ -5,7 +5,9 @@ import cn.hutool.core.util.StrUtil;
 import com.clinical.jingyi.file.share.controller.FileApi;
 import com.clinical.jingyi.file.share.entity.vo.ApiResponse;
 import com.clinical.jingyi.file.share.entity.vo.File;
+import com.clinical.jingyi.file.share.service.FileService;
 import com.clinical.jingyi.file.share.utils.FileUtils;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -15,10 +17,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.annotation.Resource;
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,27 +32,17 @@ import java.util.stream.Collectors;
  */
 @RestController
 public class FileApiImpl implements FileApi {
+    @Resource
+    FileService fileService;
 
     @Override
     public ApiResponse<List<File>> list(@RequestParam(required = false,defaultValue = "") String path) {
         try {
-            return ApiResponse.success(Files.list(FileUtils.getPath(path)).map(path1 ->{
-                File.FileBuilder builder = File.builder()
-                        .name(path1.getFileName().toString())
-                        .type("directory")
-                        .path(FileUtils.getRoot().relativize(path1).toString())
-                        .modifiedTime(FileUtils.getModifiedTime(path1))
-                        .createdTime(FileUtils.getCreateTime(path1));
-
-                if(Files.isDirectory(path1)){
-                    return builder.type("directory").build();
-                }else{
-                    return builder.type("file").build();
-                }
-            }).collect(Collectors.toList()));
+            List<File> fileList=fileService.list(path);
+            return ApiResponse.success(fileList);
         } catch (IOException e) {
             e.printStackTrace();
-            return ApiResponse.fail(e.getMessage());
+            return ApiResponse.fail(e);
         }
     }
 
