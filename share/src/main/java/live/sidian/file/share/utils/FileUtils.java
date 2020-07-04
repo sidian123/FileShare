@@ -1,6 +1,6 @@
-package com.clinical.jingyi.file.share.utils;
+package live.sidian.file.share.utils;
 
-import com.clinical.jingyi.file.share.Config;
+import live.sidian.file.share.Config;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -11,10 +11,6 @@ import java.nio.file.Files;
 import java.nio.file.NotDirectoryException;
 import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.nio.file.attribute.FileTime;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Date;
 
 /**
  * @author sidian

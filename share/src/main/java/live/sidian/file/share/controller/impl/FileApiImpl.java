@@ -1,30 +1,21 @@
-package com.clinical.jingyi.file.share.controller.impl;
+package live.sidian.file.share.controller.impl;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
-import com.clinical.jingyi.file.share.controller.FileApi;
-import com.clinical.jingyi.file.share.entity.vo.ApiResponse;
-import com.clinical.jingyi.file.share.entity.vo.File;
-import com.clinical.jingyi.file.share.service.FileService;
-import com.clinical.jingyi.file.share.utils.FileUtils;
-import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
-import org.springframework.util.Assert;
-import org.springframework.util.StringUtils;
+import live.sidian.file.share.controller.FileApi;
+import live.sidian.file.share.entity.vo.ApiResponse;
+import live.sidian.file.share.entity.vo.File;
+import live.sidian.file.share.service.FileService;
+import live.sidian.file.share.utils.FileUtils;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
-import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author sidian

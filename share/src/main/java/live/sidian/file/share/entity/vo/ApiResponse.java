@@ -1,4 +1,4 @@
-package com.clinical.jingyi.file.share.entity.vo;
+package live.sidian.file.share.entity.vo;
 
 import lombok.*;
 

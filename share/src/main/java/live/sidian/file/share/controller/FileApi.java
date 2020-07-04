@@ -1,7 +1,7 @@
-package com.clinical.jingyi.file.share.controller;
+package live.sidian.file.share.controller;
 
-import com.clinical.jingyi.file.share.entity.vo.ApiResponse;
-import com.clinical.jingyi.file.share.entity.vo.File;
+import live.sidian.file.share.entity.vo.ApiResponse;
+import live.sidian.file.share.entity.vo.File;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

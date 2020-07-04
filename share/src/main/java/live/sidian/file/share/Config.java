@@ -1,6 +1,6 @@
-package com.clinical.jingyi.file.share;
+package live.sidian.file.share;
 
-import com.clinical.jingyi.file.share.utils.FileUtils;
+import live.sidian.file.share.utils.FileUtils;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

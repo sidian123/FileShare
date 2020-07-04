@@ -1,4 +1,4 @@
-package com.clinical.jingyi.file.share;
+package live.sidian.file.share;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

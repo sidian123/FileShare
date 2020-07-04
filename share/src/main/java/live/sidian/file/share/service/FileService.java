@@ -1,15 +1,12 @@
-package com.clinical.jingyi.file.share.service;
+package live.sidian.file.share.service;
 
-import cn.hutool.core.io.FileUtil;
-import com.clinical.jingyi.file.share.entity.vo.ApiResponse;
-import com.clinical.jingyi.file.share.entity.vo.File;
-import com.clinical.jingyi.file.share.utils.FileUtils;
+import live.sidian.file.share.entity.vo.File;
+import live.sidian.file.share.utils.FileUtils;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;

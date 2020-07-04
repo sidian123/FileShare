@@ -1,4 +1,4 @@
-package com.clinical.jingyi.file.share.entity.po;
+package live.sidian.file.share.entity.po;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

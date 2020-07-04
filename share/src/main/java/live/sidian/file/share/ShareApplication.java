@@ -1,4 +1,4 @@
-package com.clinical.jingyi.file.share;
+package live.sidian.file.share;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
